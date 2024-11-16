@@ -12,13 +12,14 @@ TaskHandle_t trafficCycleTaskHandle = NULL;
 TaskHandle_t potentiometerReadingTaskHandle = NULL;
 TaskHandle_t potentiometerPrintTaskHandle = NULL;
 TaskHandle_t systemStatusTaskHandle = NULL;
+
 // Flag to indicate train status
 volatile bool trainIsApproaching = false;
 
 // Potentiometer value
 int potentiometerValue;
 
-// Define your interval for train approach detection
+// Set train interval
 const int trainAppraochInterval = 15;
 
 // Semaphore and Mutex
@@ -46,7 +47,7 @@ void buttonControlTask(void *pvParameters) {
 
       Serial.println("Train Passed. Lights back to cycle...");
     }
-    vTaskDelay(10 / portTICK_PERIOD_MS);  // Prevents blocking
+    vTaskDelay(10 / portTICK_PERIOD_MS);
   }
 }
 
@@ -117,5 +118,5 @@ void setup() {
 }
 
 void loop() {
-  // The loop remains empty as FreeRTOS handles tasks
+  
 }
