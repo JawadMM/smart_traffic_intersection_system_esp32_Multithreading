@@ -4,6 +4,7 @@
 #include "./buzzer_control/BuzzerControl.h"
 #include "./light_control/LightControl.h"
 #include "./potentiometer_control/PotentiometerControl.h"
+#include "./lcd_control/LCDControl.h"
 #include "./setup/ConfigurePins.h"
 
 // Task Handles
@@ -88,17 +89,17 @@ void potentiometerPrintTask(void *pvParameters) {
 // Task to monitor and log system status
 void systemStatusTask(void *pvParameters) {
   while (true) {
-    Serial.println("***** SYSTEM STATUS *****");
-    Serial.print("Train Approaching: ");
-    Serial.println(trainIsApproaching ? "YES" : "NO");
+
+    displaySystemStatus(trainIsApproaching);
     
-    vTaskDelay(5000 / portTICK_PERIOD_MS);  // Log every 5 seconds
+    vTaskDelay(1000 / portTICK_PERIOD_MS);  // Print every 1 second
   }
 }
 
 void setup() {
   Serial.begin(9600);
   
+  vTaskDelay(1000 / portTICK_PERIOD_MS);
   // Initialize the semaphore and mutex
   trainSemaphore = xSemaphoreCreateBinary();
   trainMutex = xSemaphoreCreateMutex();

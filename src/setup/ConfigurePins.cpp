@@ -1,7 +1,7 @@
 #include "ConfigurePins.h"
 #include "../button_control/ButtonControl.h"
 #include <Arduino.h>
-
+#include "../lcd_control/LCDControl.h"
 
 // Create a function to do the initial pins setup
 void configurePins() {
@@ -27,4 +27,7 @@ void configurePins() {
   
   // Setup for buzzer
   pinMode(BUZZER_PIN, OUTPUT);
+
+  // Setup for LCD
+  configureLCD();
 }

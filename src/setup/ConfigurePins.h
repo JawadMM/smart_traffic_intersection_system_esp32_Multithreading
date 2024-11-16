@@ -7,6 +7,7 @@
 #define POTENTIOMETER_PIN 1
 #define PUSH_BUTTON_PIN 21
 #define BUZZER_PIN 19
+#define LCD_PINS {42, 41, 40, 39, 38, 37}
 
 // Declare functions
 void configurePins();

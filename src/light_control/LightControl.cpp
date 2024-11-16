@@ -2,7 +2,7 @@
 #include <Arduino.h>
 #include "../setup/ConfigurePins.h"
 #include "../button_control/ButtonControl.h"
-
+#include "../lcd_control/LCDControl.h"
 // initialize variables
 int RED_COLOR[] = {255, 0, 14};
 int YELLOW_COLOR[] = {255, 119, 0};
@@ -68,6 +68,9 @@ void startLightsCycle(int greenDurationA) {
 
     // Calculate the green duration for light B
     int greenDurationB = TOTAL_GREEN_DURATION - greenDurationA * 1000;
+
+    // Display duration on LCD
+    displayLightsStatus(greenDurationA, greenDurationB);
 
     // Get the current time to change states accordingly
     unsigned long currentMillis = millis();
